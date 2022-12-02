@@ -6,84 +6,60 @@ import Form2 from './Form2.js';
 
 function App() {
 
+  // setting state for important variables, including one from each form component
   const [stat, setStat] = useState('');
   const [playerid, setPlayerid] = useState(0);
   const [playerStat, setPlayerStat] = useState('');
 
-  // useEffect(() => {
-  //   // let url = new URL(playerID, 'https://statsapi.web.nhl.com/api/v1/people/')
-
-  //   // const apiCall = 
-  // }, [])
-  // axios({
-  //   url: `https://statsapi.web.nhl.com/api/v1/people/${playerid}/stats/?stats=statsSingleSeason&season=20212022`,
-  //   method: "GET",
-  //   dataResponse: "json",
-  //   // params: {
-  //   //   client_id: "RzZKZv943CGW5DXPIS7EdD40wjy07mPj-YW_sLcbTJDE",
-  //   //   query: "puppies",
-  //   //   per_page: 30,
-  //   // },
-
-  // })
-  //   .then((res) => {
-  //     const playerStat = res.data.stats[0].splits[0].stat.goals
-
-  //     console.log(playerStat)
-  //     setStat(playerStat)
-  //   });
-
-  // async function getData() {
-  //   const myObject = await fetch(`https://statsapi.web.nhl.com/api/v1/people/${playerid}/stats/?stats=statsSingleSeason&season=20212022`);
-  //   const parsedObject = await myObject.json();
-  //   return parsedObject;
-  // }
-  // getData()
-  //   .then((res) => {
-  //     const playerStat = res.data.stats[0].splits[0].stat.goals
-
-  //     console.log(playerStat)
-  //     setStat(playerStat)
-  //   });
-
+  // gets the hockey player choice data from the first form
   const getAnswer = (e, userPick) => {
     e.preventDefault();
     setPlayerid(userPick)
   }
 
+  // gets the chosen stat data from the second form
   const getAnswer2 = (e, userPick) => {
     e.preventDefault();
     setPlayerStat(userPick)
   }
 
+  // on get stats button push... make the api call and set the value in state
   const getStats = () => {
-    // on get stats button push...
-    // console.log(playerid + stat)
     axios({
       url: `https://statsapi.web.nhl.com/api/v1/people/${playerid}/stats/?stats=statsSingleSeason&season=20212022`,
       method: "GET",
       dataResponse: "json",
-    })
-      .then((res) => {
-        const playerStat = res.data.stats[0].splits[0].stat.goals
-  
-        console.log(playerStat)
-        setStat(playerStat)
+    }).then((res) => {
+        // checks to see what 'playerStat' is set at to choose which api information to save to the variable
+        const apiData =
+        playerStat === 'goals' ? res.data.stats[0].splits[0].stat.goals 
+        : playerStat === 'assists' ? res.data.stats[0].splits[0].stat.assists
+        : playerStat === 'points' ? res.data.stats[0].splits[0].stat.points
+        : playerStat === 'hits' ? res.data.stats[0].splits[0].stat.hits
+        : res.data.stats[0].splits[0].stat.pim 
+        // setState
+        setStat(apiData)
       });
   }
 
-  // both forms send over data onChange
-  // on button makes the api call with the correct information, and then resets the information variables to empty strings
-
-
+  // keeps track of the image paths for referencing
+  const imagesPath = {
+    0: "./assets/nhlLogo.png",
+    8478402: "./assets/mcdavid.jpg",
+    8479318: "./assets/matthews.jpg",
+    8477934: "./assets/draisaitl.jpg",
+    8471675: "./assets/crosby.jpg",
+    8471214: "./assets/ovechkin.jpg"
+  }
 
   return (
     <div className="App">
       <h1>my hockey app</h1>
-      {stat}
-      <Form getAnswer={getAnswer} />
+      <Form getAnswer={getAnswer}/>
       <Form2 getAnswer2={getAnswer2}/>
       <button onClick={getStats}>Get those stats!</button>
+      <img src={imagesPath[playerid]} alt="" />
+      <p className='statP'>{stat}</p>
     </div>
   );
 }
