@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css';
 import Form from './Form.js';
 import Form2 from './Form2.js';
+import './Form.css'
 
 function App() {
 
@@ -25,41 +26,71 @@ function App() {
 
   // on get stats button push... make the api call and set the value in state
   const getStats = () => {
+    console.log('making a request')
     axios({
+      // looks in state and changes the value in the template-literal URL to the correct player's ID. a sneaky way to get around params, which this API seemingly doesn't document
       url: `https://statsapi.web.nhl.com/api/v1/people/${playerid}/stats/?stats=statsSingleSeason&season=20212022`,
       method: "GET",
       dataResponse: "json",
     }).then((res) => {
-        // checks to see what 'playerStat' is set at to choose which api information to save to the variable
-        const apiData =
-        playerStat === 'goals' ? res.data.stats[0].splits[0].stat.goals 
-        : playerStat === 'assists' ? res.data.stats[0].splits[0].stat.assists
-        : playerStat === 'points' ? res.data.stats[0].splits[0].stat.points
-        : playerStat === 'hits' ? res.data.stats[0].splits[0].stat.hits
-        : res.data.stats[0].splits[0].stat.pim 
-        // setState
-        setStat(apiData)
-      });
+      // checks to see what 'playerStat' is set at to choose which api information to save to the variable
+      const apiData =
+        playerStat === 'goals' ? res.data.stats[0].splits[0].stat.goals
+          : playerStat === 'assists' ? res.data.stats[0].splits[0].stat.assists
+            : playerStat === 'points' ? res.data.stats[0].splits[0].stat.points
+              : playerStat === 'hits' ? res.data.stats[0].splits[0].stat.hits
+                : res.data.stats[0].splits[0].stat.pim
+      // setState
+      setStat(apiData)
+    });
   }
 
-  // keeps track of the image paths for referencing
+  // object that keeps track of the correct images
   const imagesPath = {
-    0: "./assets/nhlLogo.png",
-    8478402: "./assets/mcdavid.jpg",
-    8479318: "./assets/matthews.jpg",
-    8477934: "./assets/draisaitl.jpg",
-    8471675: "./assets/crosby.jpg",
-    8471214: "./assets/ovechkin.jpg"
+    0: {
+      img: "./assets/nhlLogo.png",
+      alt: "nhl logo"
+    },
+    8478402: {
+      img: "./assets/mcdavid.jpg",
+      alt: "picture of Connor McDavid"
+    },
+    8479318: {
+      img: "./assets/matthews.jpg",
+      alt: "picture of Auston Matthews"
+    },
+    8477934: {
+      img: "./assets/draisaitl.jpg",
+      alt: "picture of Leon Draisaitl"
+    },
+    8471675: {
+      img: "./assets/crosby.jpg",
+      alt: "picture of Sidney Crosby"
+    },
+    8471214: {
+      img: "./assets/ovechkin.jpg",
+      alt: "picture of Alex Ovechkin"
+    }
   }
 
   return (
     <div className="App">
-      <h1>my hockey app</h1>
-      <Form getAnswer={getAnswer}/>
-      <Form2 getAnswer2={getAnswer2}/>
-      <button onClick={getStats}>Get those stats!</button>
-      <img src={imagesPath[playerid]} alt="" />
+      <section className="textBox">
+        <h1>Hockey Compare</h1>
+        <h3>Definietly not the only way to get stats</h3>
+        <p>The 2022-2023 NHL season was one of the highest scoring seasons {"\n"} of the modern age.</p>
+        Choose one of your favourite hockey players (or the most popular) and then pick a cool stat.
+      </section>
+      <section className='playerBox'>
+        <Form getAnswer={getAnswer} />
+        {/* shows the correct img and alt depending on the variable in state */}
+        <img src={imagesPath[playerid].img} alt={imagesPath[playerid].alt} />
+      </section>
+      <section className='statBox'>
+      <Form2 getAnswer2={getAnswer2} />
       <p className='statP'>{stat}</p>
+      <button onClick={getStats}>Get those stats!</button>
+      </section>
     </div>
   );
 }

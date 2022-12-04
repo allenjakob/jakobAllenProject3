@@ -5,7 +5,12 @@ const Form = (props) => {
     const [userChoice, setUserChoice] = useState('');
     
     const transferData = (e) => {
-        props.getAnswer(e, userChoice)
+        e.preventDefault()
+        // error preventing. stops locking in on the logo
+        if (userChoice){
+            props.getAnswer(e, userChoice)
+
+        }
     }
     
     return(
@@ -17,8 +22,8 @@ const Form = (props) => {
             onInput={ (e) => setUserChoice(e.target.value) }
             required
             >
-                {/* the values are specialized playerIDs that each NHL player gets when they're drafted / first play a game. The API uses them to find that specific players data */}
-                <option selected={true} value="" disabled>Pick one:</option>
+                {/* the values are specialized player IDs that each NHL player gets when they're drafted / first play a game. The API uses them to find that specific players data */}
+                <option selected={true} value="0" disabled>Pick one:</option>
                 <option value="8478402">Connor McDavid</option>
                 <option value="8479318">Auston Matthews</option>
                 <option value="8477934">Leon Draisaitl</option>
