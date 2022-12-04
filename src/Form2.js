@@ -6,6 +6,7 @@ const Form = (props) => {
 
 
     const transferData = (e) => {
+        e.preventDefault()
         props.getAnswer2(e, userChoice)
     }
 

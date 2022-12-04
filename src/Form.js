@@ -9,17 +9,16 @@ const Form = (props) => {
         // error preventing. stops locking in on the logo
         if (userChoice){
             props.getAnswer(e, userChoice)
-
         }
     }
     
     return(
-        <form>
+        <form onSubmit={transferData}>
             <label htmlFor="whichPlayer">Choose a Hockey Player!</label>
             <select 
             id="whichPlayer" 
             name="whichPlayer"
-            onInput={ (e) => setUserChoice(e.target.value) }
+            onChange={ (e) => setUserChoice(e.target.value) }
             required
             >
                 {/* the values are specialized player IDs that each NHL player gets when they're drafted / first play a game. The API uses them to find that specific players data */}
@@ -30,7 +29,7 @@ const Form = (props) => {
                 <option value="8471675">Sidney Crosby</option>
                 <option value="8471214">Alex Ovechkin</option>
             </select>
-            <button onClick={transferData}>Lock it in!</button>
+            <button>Lock it in!</button>
         </form>
     )
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import Form from './Form.js';
@@ -26,7 +26,6 @@ function App() {
 
   // on get stats button push... make the api call and set the value in state
   const getStats = () => {
-    console.log('making a request')
     axios({
       // looks in state and changes the value in the template-literal URL to the correct player's ID. a sneaky way to get around params, which this API seemingly doesn't document
       url: `https://statsapi.web.nhl.com/api/v1/people/${playerid}/stats/?stats=statsSingleSeason&season=20212022`,
@@ -78,7 +77,7 @@ function App() {
       <section className="textBox">
         <h1>Hockey Compare</h1>
         <h3>Definietly not the only way to get stats</h3>
-        <p>The 2022-2023 NHL season was one of the highest scoring seasons {"\n"} of the modern age.</p>
+        <p>The 2022-2023 NHL season was one of the highest scoring seasons <br/> of the modern age.</p>
         Choose one of your favourite hockey players (or the most popular) and then pick a cool stat.
       </section>
       <section className='playerBox'>
