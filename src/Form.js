@@ -19,7 +19,6 @@ const Form = ({getAnswer}) => {
             id="whichPlayer" 
             name="whichPlayer"
             onChange={ (e) => setUserChoice(e.target.value) }
-            required
             >
                 {/* the values are specialized player IDs that each NHL player gets when they're drafted / first play a game. The API uses them to find that specific players data */}
                 <option selected={true} value="0" disabled>Pick one:</option>

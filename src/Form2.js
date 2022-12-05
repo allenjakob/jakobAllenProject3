@@ -4,9 +4,9 @@ const Form = ({getAnswer2}) => {
 
     const [userChoice, setUserChoice] = useState('');
 
-
     const transferData = (e) => {
         e.preventDefault()
+        // error preventing.
         if (userChoice){
             getAnswer2(e, userChoice)
         }

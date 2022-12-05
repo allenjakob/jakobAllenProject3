@@ -18,7 +18,8 @@ function App() {
   }
 
   // gets the chosen stat data from the second form
-  const getAnswer2 = (userPick) => {
+  const getAnswer2 = (e, userPick) => {
+    e.preventDefault();
     setPlayerStat(userPick)
   }
 
@@ -130,36 +131,12 @@ export default App;
 
 // pseudocode!
 // a form box where you can pick between 5-10 popular hockey players
-// display a picture of them
 // pick from another form to determine which stat you want to display from said player
 // make an api call with that players ID to return which stat the user selected
 // display that stat on the screen
 
 // stretch goals
-// instead of picking one hockey player, the user can select two at the same time
-// compare both players stats and change the styling based on the better stats
+// add a picture of the player
 
 // even stretchier
-// after both players are picked, a random stat is chosen
-// the user must select which player had the higher stat
-// pick another random stat and repeat
-
-
-
-
-
-
-
-
-
-
-
-
-// const url = new URL('https://www.rijksmuseum.nl/api/en/collection')
-//     // search params
-//     url.search = new URLSearchParams({
-//         // we have our key, asking for only images, and the querey is monkey
-//         key: artApp.key,
-//         imgonly: true,
-//         q: query
-//     })
+// pick two players at once
