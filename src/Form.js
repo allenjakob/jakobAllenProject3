@@ -28,6 +28,11 @@ const Form = ({getAnswer}) => {
                 <option value="8477934">Leon Draisaitl</option>
                 <option value="8471675">Sidney Crosby</option>
                 <option value="8471214">Alex Ovechkin</option>
+                <option value="8474600">Roman Josi</option>
+                <option value="8478483">Mitch Marner</option>
+                <option value="8474564">Steven Stamkos</option>
+                <option value="8474141">Patrick Kane</option>
+                <option value="8473419">Brad Marchand</option>
             </select>
             <button>Lock it in!</button>
         </form>
@@ -45,3 +50,8 @@ export default Form;
 // const draisaitl = 8477934;
 // const crosby = 8471675;
 // const ovechkin = 8471214;
+// 8474600 josi
+// 8478483 marner
+// 8474564 stamkos
+// 8474141 kane
+// 8473419 marchand

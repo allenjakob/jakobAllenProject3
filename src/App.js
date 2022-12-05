@@ -7,7 +7,7 @@ import Form2 from './Form2.js';
 function App() {
 
   // setting state for important variables, including one from each form component
-  const [stat, setStat] = useState('');
+  const [stat, setStat] = useState('#?');
   const [playerid, setPlayerid] = useState(0);
   const [playerStat, setPlayerStat] = useState('');
 
@@ -18,8 +18,7 @@ function App() {
   }
 
   // gets the chosen stat data from the second form
-  const getAnswer2 = (e, userPick) => {
-    e.preventDefault();
+  const getAnswer2 = (userPick) => {
     setPlayerStat(userPick)
   }
 
@@ -72,30 +71,56 @@ function App() {
     8471214: {
       img: "../assets/ovechkin.jpg",
       alt: "picture of Alex Ovechkin"
+    },
+    8474600: {
+      img: "../assets/josi.jpg",
+      alt: "picture of Roman Josi"
+    },
+    8478483: {
+      img: "../assets/marner.jpg",
+      alt: "picture of Mitch Marner"
+    },
+    8474564: {
+      img: "../assets/stamkos.jpg",
+      alt: "picture of Steven Stamkos"
+    },
+    8474141: {
+      img: "../assets/kane.jpg",
+      alt: "picture of Patrick Kane"
+    },
+    8473419: {
+      img: "../assets/marchand.jpg",
+      alt: "picture of Brad Marchand"
     }
   }
 
   return (
     <div className="App">
-      <section className="textSec">
-        <h1>Hockey Compare</h1>
-        <h3>Definietly not the only way to get stats</h3>
-        <p>The 2022-2023 NHL season was one of the highest scoring seasons of the modern age.</p>
-        <p>Choose one of your favourite hockey players (or the most popular) and then pick a cool stat.</p>     
-      </section>
-      <section className='userInputSec'>
-        <Form getAnswer={getAnswer} />
-        <button onClick={getStats}>Get those stats!</button>
-        <Form2 getAnswer2={getAnswer2} />
-      </section>
-      <section className='displaySec'>
-        <div className="imgCon">
-          <img src={imagesPath[playerid].img} alt={imagesPath[playerid].alt} />
-        </div>
-        <div className="statCon">
-          <p className='statP'>{stat}</p>
-        </div>
-      </section>
+      <div className="wrapper">
+        <section className="textSec">
+          <h1>Hockey Compare</h1>
+          <h3>Definietly not the only way to get stats</h3>
+          <p>The 2022-2023 NHL season was one of the highest scoring seasons of the modern age.</p>
+          <p>Choose one of your favourite hockey players (or the most popular) and then pick a cool stat. Now all you have to do is Get Those Stats!</p>
+        </section>
+        <section className='userInputSec'>
+          <Form getAnswer={getAnswer} />
+          <button onClick={getStats}>Get those stats!</button>
+          <Form2 getAnswer2={getAnswer2} />
+        </section>
+        <section className='displaySec'>
+          <div className="imgCon">
+            <img src={imagesPath[playerid].img} alt={imagesPath[playerid].alt} />
+          </div>
+          <div className="statCon">
+            <p className='statP'>{stat}</p>
+          </div>
+        </section>
+        <footer>
+          <p>Made at Juno 2022 | By Jakob Allen</p>
+        </footer>
+
+      </div>
     </div>
   );
 }

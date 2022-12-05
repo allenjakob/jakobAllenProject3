@@ -17,13 +17,18 @@ button {
 h1 {
   font-family: 'Oswald', sans-serif;
 }
+.wrapper {
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+}
 
 .App {
   text-align: center;
   justify-content: center;
   display: block;
   background-color: gray;
-  height: 130vh;
+  height: 100vh;
   /* display: flex; */
 }
 h1, h2, h3, button{
@@ -45,7 +50,7 @@ button{
   text-shadow: none;
   border: none;
   color: white;
-  padding: 15px 13px;
+  padding: 10px 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -60,41 +65,42 @@ button:hover{
   transition: 0.3s;
 } */
 button:active{
-  background-color: red;
+  background-color: darkslategray;
   transition: 0.1s;
 
 }
 
 label{
   display: block;
+  text-decoration: underline;
+  margin-bottom: 10px;
 }
 
-.textSec{
-  border: 2px solid red;
-}
 .userInputSec{
   display: flex;
-  border: 2px solid red;
-  width: 80%;
   align-items: center;
 }
 .displaySec{
   display: flex;
-  border: 2px solid red;
   justify-content: space-between;
   align-items: center;
 }
 
 .statCon{
   background-color: darkslategray;
-  border-radius: 50%;
+  border-radius: 30%;
   width: 200px;
   height: 200px;
   justify-content: center;
   color: cyan;
+  margin-right: 100px;
+  margin-left: 40px;
 }
 
-
+footer{
+  margin-top: 100px;
+  font-size: 0.8rem;
+}
 
 
 
