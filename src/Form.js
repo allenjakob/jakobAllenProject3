@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-const Form = (props) => {
+const Form = ({getAnswer}) => {
 
     const [userChoice, setUserChoice] = useState('');
     
@@ -8,7 +8,7 @@ const Form = (props) => {
         e.preventDefault()
         // error preventing. stops locking in on the logo
         if (userChoice){
-            props.getAnswer(e, userChoice)
+            getAnswer(e, userChoice)
         }
     }
     

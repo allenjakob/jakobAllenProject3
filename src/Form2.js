@@ -1,17 +1,19 @@
 import {useState} from 'react';
 
-const Form = (props) => {
+const Form = ({getAnswer2}) => {
 
     const [userChoice, setUserChoice] = useState('');
 
 
     const transferData = (e) => {
         e.preventDefault()
-        props.getAnswer2(e, userChoice)
+        if (userChoice){
+            getAnswer2(e, userChoice)
+        }
     }
 
     return(
-        <form>
+        <form onSubmit={transferData}>
             <label htmlFor="whichPlayer">Choose a type of Stat!</label>
             <select 
             id="whichPlayer" 
@@ -25,7 +27,7 @@ const Form = (props) => {
                 <option value="hits">Hits</option>
                 <option value="pim">Penalty Minutes</option>
             </select>
-            <button onClick={transferData}>Lock it in!</button>
+            <button>Lock it in!</button>
         </form>
     )
 }
